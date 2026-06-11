@@ -4,6 +4,220 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SFS汉化模组下载中心</title>
+    /* ========== 赞助入口样式 ========== */
+ .sponsor-float-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 80px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #2563eb;
+        color: white;
+        border: none;
+        font-size: 1.6rem;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .sponsor-float-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+    }
+    .sponsor-float-btn:active {
+        transform: scale(0.95);
+    }
+    .sponsor-float-btn .btn-text {
+        font-size: 0.75rem;
+        position: absolute;
+        bottom: -22px;
+        white-space: nowrap;
+        color: #333;
+        font-weight: 600;
+        background: rgba(255,255,255,0.9);
+        padding: 2px 8px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .sponsor-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+    }
+    .sponsor-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    .sponsor-modal-box {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 85vh;
+        overflow-y: auto;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        transform: scale(0.8);
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .sponsor-modal-overlay.active .sponsor-modal-box {
+        transform: scale(1);
+    }
+    .sponsor-modal-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .sponsor-modal-header .modal-icon {
+        font-size: 3rem;
+        margin-bottom: 8px;
+    }
+    .sponsor-modal-header h3 {
+        font-size: 1.3rem;
+        color: #1f2937;
+    }
+    .sponsor-modal-header p {
+        color: #6b7280;
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+
+    .paste-area {
+        border: 2px dashed #cbd5e1;
+        border-radius: 16px;
+        padding: 30px 20px;
+        text-align: center;
+        margin-bottom: 20px;
+        transition: all 0.3s;
+        background: #f8fafc;
+        cursor: pointer;
+    }
+    .paste-area:hover, .paste-area.dragover {
+        border-color: #2563eb;
+        background: #eff6ff;
+    }
+    .paste-area .paste-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    .paste-area .paste-text {
+        color: #6b7280;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    .paste-area .paste-hint {
+        color: #9ca3af;
+        font-size: 0.8rem;
+        margin-top: 8px;
+    }
+
+    .sponsor-images-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    .sponsor-image-item {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+        background: #f9fafb;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .sponsor-image-item img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+    .sponsor-image-item .remove-btn {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: rgba(239, 68, 68, 0.9);
+        color: white;
+        border: none;
+        font-size: 0.85rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+    .sponsor-image-item:hover .remove-btn {
+        opacity: 1;
+    }
+    .sponsor-image-item .remove-btn:hover {
+        background: #dc2626;
+    }
+
+    .sponsor-modal-footer {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+    }
+    .sponsor-modal-footer .modal-btn {
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+        flex: 1;
+    }
+    .sponsor-modal-footer .modal-btn-confirm {
+        background: #2563eb;
+        color: white;
+    }
+    .sponsor-modal-footer .modal-btn-confirm:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+    }
+    .sponsor-modal-footer .modal-btn-cancel {
+        background: #f3f4f6;
+        color: #6b7280;
+    }
+    .sponsor-modal-footer .modal-btn-cancel:hover {
+        background: #e5e7eb;
+    }
+
+    @media (max-width: 768px) {
+        .sponsor-float-btn {
+            right: 15px;
+            bottom: 70px;
+            width: 50px;
+            height: 50px;
+            font-size: 1.4rem;
+        }
+         .sponsor-images-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
     <style>
         * {
             margin: 0;
@@ -347,6 +561,36 @@
     }
     </style>
 </head>
+        <!-- 悬浮赞助按钮 -->
+    <button class="sponsor-float-btn" onclick="openSponsorModal()" title="赞助支持">
+        ❤️
+        <span class="btn-text">赞助</span>
+    </button>
+
+    <!-- 赞助弹窗 -->
+    <div class="sponsor-modal-overlay" id="sponsorModal">
+        <div class="sponsor-modal-box">
+            <div class="sponsor-modal-header">
+                <div class="modal-icon">☕</div>
+                <h3>支持汉化模组站</h3>
+                <p>感谢您对汉化工作的支持！粘贴您的赞助图片即可</p>
+            </div>
+
+            <div class="paste-area" id="pasteArea" tabindex="0">
+                <div class="paste-icon">📋</div>
+                <div class="paste-text">点击此处或按 Ctrl+V 粘贴图片</div>
+                <div class="paste-hint">支持直接粘贴截图、微信/QQ 收款码等</div>
+            </div>
+
+            <div class="sponsor-images-grid" id="sponsorImagesGrid"></div>
+
+            <div class="sponsor-modal-footer">
+                <button class="modal-btn modal-btn-cancel" onclick="closeSponsorModal()">关闭</button>
+                <button class="modal-btn modal-btn-confirm" onclick="saveSponsorImages()">💾 保存图片</button>
+            </div>
+        </div>
+    </div>
+
 <body>
     <!-- 进入弹窗提示 -->
     <div class="modal-overlay" id="entryModal">
@@ -402,6 +646,142 @@
             <p style="margin-top:8px; font-size:0.8rem; opacity:0.7">© 2026 汉化模组下载中心 | 仅供学习交流使用  网站和汉化模组均来自A Future star</p>
         </div>
     </div>
+            // ========== 赞助功能 ==========
+        let sponsorImages = [];
+
+        function openSponsorModal() {
+            const modal = document.getElementById('sponsorModal');
+            document.body.classList.add('modal-open');
+            setTimeout(() => modal.classList.add('active'), 10);
+            loadSavedSponsorImages();
+        }
+
+        function closeSponsorModal() {
+            const modal = document.getElementById('sponsorModal');
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        document.getElementById('sponsorModal').addEventListener('click', function(e) {
+            if (e.target === this) closeSponsorModal();
+        });
+
+        const pasteArea = document.getElementById('pasteArea');
+
+        pasteArea.addEventListener('click', function() {
+            this.focus();
+            navigator.clipboard.read().then(items => {
+                handleClipboardItems(items);
+            }).catch(err => {
+                console.log('剪贴板读取失败，请使用 Ctrl+V 粘贴', err);
+            });
+        });
+
+        document.addEventListener('paste', function(e) {
+            const modal = document.getElementById('sponsorModal');
+            if (!modal.classList.contains('active')) return;
+            const items = e.clipboardData.items;
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf('image') !== -1) {
+                    const blob = items[i].getAsFile();
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        addSponsorImage(event.target.result);
+                    };
+                    reader.readAsDataURL(blob);
+                }
+            }
+        });
+
+        async function handleClipboardItems(items) {
+            for (const item of items) {
+                for (const type of item.types) {
+                    if (type.startsWith('image/')) {
+                        const blob = await item.getType(type);
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            addSponsorImage(event.target.result);
+                        };
+                        reader.readAsDataURL(blob);
+                    }
+                }
+            }
+        }
+
+        pasteArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('dragover');
+        });
+        pasteArea.addEventListener('dragleave', function() {
+            this.classList.remove('dragover');
+        });
+        pasteArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            for (const file of files) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        addSponsorImage(event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+
+        function addSponsorImage(dataUrl) {
+            if (sponsorImages.length >= 4) {
+                alert('最多支持 4 张图片');
+                return;
+            }
+            sponsorImages.push(dataUrl);
+            renderSponsorImages();
+        }
+
+        function removeSponsorImage(index) {
+            sponsorImages.splice(index, 1);
+            renderSponsorImages();
+        }
+
+        function renderSponsorImages() {
+            const grid = document.getElementById('sponsorImagesGrid');
+            grid.innerHTML = '';
+            sponsorImages.forEach((img, index) => {
+                const item = document.createElement('div');
+                item.className = 'sponsor-image-item';
+                item.innerHTML = `
+                    <img src="${img}" alt="赞助图片 ${index + 1}">
+                    <button class="remove-btn" onclick="removeSponsorImage(${index})" title="删除">✕</button>
+                `;
+                grid.appendChild(item);
+            });
+        }
+
+        function saveSponsorImages() {
+            if (sponsorImages.length === 0) {
+                alert('请先粘贴至少一张图片');
+                return;
+            }
+            localStorage.setItem('sfs_sponsor_images', JSON.stringify(sponsorImages));
+            alert(`已保存 ${sponsorImages.length} 张赞助图片！`);
+            closeSponsorModal();
+        }
+
+        function loadSavedSponsorImages() {
+            const saved = localStorage.getItem('sfs_sponsor_images');
+            if (saved) {
+                try {
+                    sponsorImages = JSON.parse(saved);
+                    renderSponsorImages();
+                } catch(e) {
+                    sponsorImages = [];
+                }
+            } else {
+                sponsorImages = [];
+                renderSponsorImages();
+            }
+        }
     <script>
         // 文件数据配置：新增 category 分类字段
         // 分类说明：
